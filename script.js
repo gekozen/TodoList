@@ -11,11 +11,28 @@ todoList.addEventListener("click", deleteCheck);
 filterOption.addEventListener("click", filterTodo);
 
 
-//Functions
-
 function addTodo(event) {
 	//prevent form from submitting
 	event.preventDefault();
+	//don't create if todo is empty or already exists and animate input and button
+	let todos;
+	if (window.localStorage.getItem("todos") === null){
+		todos = [];
+	}else {
+		todos = JSON.parse(window.localStorage.getItem("todos"));
+	}
+	if (todoInput.value === "" || todos.includes(todoInput.value) ){
+		let placeToggle = document.querySelector(".todo-input");
+		let placeToggle2 = document.querySelector(".todo-button");
+			placeToggle.classList.add("todo-input2");
+			placeToggle2.classList.add("todo-input2");
+			setTimeout(myTimer, 200);
+		function myTimer(){
+			placeToggle.classList.remove("todo-input2");
+			placeToggle2.classList.remove("todo-input2");
+		}
+		return;
+	}
 	//todo DIV
 	const todoDiv = document.createElement("div");
 	todoDiv.classList.add("todo");
@@ -108,7 +125,7 @@ function saveLocalTodos(todo) {
 	//push new todo to local storage
 	todos.push(todo);
 	window.localStorage.setItem("todos", JSON.stringify(todos));
-	console.log(todos);
+
 }
 
 function getTodos() {
@@ -159,3 +176,4 @@ function removeLocalTodos(todo) {
 	todos.splice(todos.indexOf(todoIndex), 1);
 	window.localStorage.setItem("todos", JSON.stringify(todos));
 }
+
