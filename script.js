@@ -7,6 +7,7 @@ const deleteList = document.querySelector(".deleteButton");
 
 //event listener
 document.addEventListener("DOMContentLoaded", getTodos);
+document.addEventListener("DOMContentLoaded", getColors);
 todoButton.addEventListener("click", addTodo);
 todoList.addEventListener("click", deleteCheck);
 filterOption.addEventListener("click", filterTodo);
@@ -184,4 +185,51 @@ function removeLocalTodos(todo) {
 	todos.splice(todos.indexOf(todoIndex), 1);
 	window.localStorage.setItem("todos", JSON.stringify(todos));
 }
+
+
+//background colour control
+var color1 = document.querySelector(".color1");
+var color2 = document.querySelector(".color2");
+var body = document.getElementById("boo");
+
+//color function
+function setGradient(){
+	body.style.background = 
+		"linear-gradient(to right, " 
+		+ color1.value 
+		+ ", "
+		+ color2.value 
+		+ ")";
+	window.localStorage.setItem("color1", JSON.stringify(color1.value));
+	window.localStorage.setItem("color2", JSON.stringify(color2.value));
+}
+//Load colours from local storage
+function getColors(){
+	console.log("hello");
+	console.log(color1.value)
+/*	let color1;
+	let color2;*/
+if (window.localStorage.getItem("color1") === null){
+		color1.value = "";
+	}else {
+		color1.value = JSON.parse(window.localStorage.getItem("color1"));
+	}
+if (window.localStorage.getItem("color2") === null){
+		color2.value = "";
+	}else {
+		color2.value = JSON.parse(window.localStorage.getItem("color2"));
+	}
+	body.style.background = 
+		"linear-gradient(to right, " 
+		+ color1.value 
+		+ ", "
+		+ color2.value 
+		+ ")";
+}
+
+
+//colour event listeners
+color1.addEventListener("input", setGradient);
+
+color2.addEventListener("input", setGradient);
 
