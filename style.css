@@ -171,7 +171,7 @@ div.reinputDiv{
 }
 
 
-.reinputNameButton{
+.reinputNameButton, .deleteButton{
 	margin: 0.5rem;
 	background-color: white;
 	color: #ff6f47;
@@ -185,6 +185,11 @@ div.reinputDiv{
 }
 
 .reinputNameButton:hover {
+	background-color: #ff6f47;
+	color: white;	
+}
+
+.deleteButton:hover {
 	background-color: #ff6f47;
 	color: white;	
 }
