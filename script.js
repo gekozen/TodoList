@@ -210,12 +210,12 @@ function getColors(){
 /*	let color1;
 	let color2;*/
 if (window.localStorage.getItem("color1") === null){
-		color1.value = "";
+		color1.value = "#180D36";
 	}else {
 		color1.value = JSON.parse(window.localStorage.getItem("color1"));
 	}
 if (window.localStorage.getItem("color2") === null){
-		color2.value = "";
+		color2.value = "#8A2424";
 	}else {
 		color2.value = JSON.parse(window.localStorage.getItem("color2"));
 	}
